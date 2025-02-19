@@ -20,10 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', action: [HomeController::class,'index']);
 
 
-Route::get('/category/food-beverage', action: [ProductsController::class,'foodBeverage']);
-Route::get('/category/beauty-health', action: [ProductsController::class,'beautyHealth']);
-Route::get('/category/home-care', action: [ProductsController::class,'homeCare']);
-Route::get('/category/baby-kid', action: [ProductsController::class,'babyKid']);
+Route::prefix('category')->group(function () {
+    Route::get('/food-beverage', [ProductsController::class, 'foodBeverage']);
+    Route::get('/beauty-health', [ProductsController::class, 'beautyHealth']);
+    Route::get('/home-care', [ProductsController::class, 'homeCare']);
+    Route::get('/baby-kid', [ProductsController::class, 'babyKid']);
+});
 
 Route::get('/user/{id}/name/{name}', action: [UserController::class,'profile']);
 
